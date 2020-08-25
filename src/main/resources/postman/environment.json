@@ -1,0 +1,49 @@
+{
+  "id": "ae63ca18-2939-4bcd-a85b-9cd3d51b572b",
+  "name": "poc-keycloak",
+  "values": [
+    {
+      "key": "app-host",
+      "value": "http://localhost:8080",
+      "enabled": true
+    },
+    {
+      "key": "keycloak-realm",
+      "value": "my-realm",
+      "enabled": true
+    },
+    {
+      "key": "keycloak-host",
+      "value": "http://localhost:18080",
+      "enabled": true
+    },
+    {
+      "key": "keycloak-user",
+      "value": "my-user",
+      "enabled": true
+    },
+    {
+      "key": "keycloak-password",
+      "value": "my-user",
+      "enabled": true
+    },
+    {
+      "key": "keycloak-client-secret",
+      "value": "5a0c4445-dd28-4cea-a278-75c4209cf1df",
+      "enabled": true
+    },
+    {
+      "key": "keycloak-client-id",
+      "value": "my-app",
+      "enabled": true
+    },
+    {
+      "key": "keycloak-access-token",
+      "value": "",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2020-08-25T02:01:01.963Z",
+  "_postman_exported_using": "Postman/7.30.1"
+}

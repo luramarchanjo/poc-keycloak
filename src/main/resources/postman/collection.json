@@ -1,0 +1,243 @@
+{
+  "info": {
+    "_postman_id": "a2cb4dbf-17b1-4741-bd86-f4fb4de2f7a1",
+    "name": "poc-keycloak",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login | With Scope",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5bc54bcc-b8f6-4955-baf9-8727820744e9",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Token is present\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.environment.set(\"keycloak-access-token\", jsonData.access_token);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "password",
+              "type": "text"
+            },
+            {
+              "key": "username",
+              "value": "{{keycloak-user}}",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "{{keycloak-password}}",
+              "type": "text"
+            },
+            {
+              "key": "client_id",
+              "value": "{{keycloak-client-id}}",
+              "type": "text"
+            },
+            {
+              "key": "client_secret",
+              "value": "{{keycloak-client-secret}}",
+              "type": "text"
+            },
+            {
+              "key": "scope",
+              "value": "user:read",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{keycloak-host}}/auth/realms/{{keycloak-realm}}/protocol/openid-connect/token",
+          "host": [
+            "{{keycloak-host}}"
+          ],
+          "path": [
+            "auth",
+            "realms",
+            "{{keycloak-realm}}",
+            "protocol",
+            "openid-connect",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login | Without",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "765733c0-a9c5-4309-8276-4ef35e61b24e",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Token is present\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.environment.set(\"keycloak-access-token\", jsonData.access_token);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "password",
+              "type": "text"
+            },
+            {
+              "key": "username",
+              "value": "{{keycloak-user}}",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "{{keycloak-password}}",
+              "type": "text"
+            },
+            {
+              "key": "client_id",
+              "value": "{{keycloak-client-id}}",
+              "type": "text"
+            },
+            {
+              "key": "client_secret",
+              "value": "{{keycloak-client-secret}}",
+              "type": "text"
+            },
+            {
+              "key": "scope",
+              "value": "user:read",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{keycloak-host}}/auth/realms/{{keycloak-realm}}/protocol/openid-connect/token",
+          "host": [
+            "{{keycloak-host}}"
+          ],
+          "path": [
+            "auth",
+            "realms",
+            "{{keycloak-realm}}",
+            "protocol",
+            "openid-connect",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Restricted API",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "9ad72417-35d5-41d0-bf6a-359cc11b1686",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{keycloak-access-token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{app-host}}/v1/restricted",
+          "host": [
+            "{{app-host}}"
+          ],
+          "path": [
+            "v1",
+            "restricted"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Not Restricted API",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "7dcf9fd3-7191-4882-98b2-521c84281bbe",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{app-host}}/v1/not-restricted",
+          "host": [
+            "{{app-host}}"
+          ],
+          "path": [
+            "v1",
+            "not-restricted"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
