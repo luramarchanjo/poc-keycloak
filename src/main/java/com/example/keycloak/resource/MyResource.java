@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MyResource {
 
-    @GetMapping("/v1/allowed")
+    @GetMapping("/v1/restricted")
     public String allowedToken() {
-        return "Token in allowed";
+        return "Restricted API";
     }
 
-    @GetMapping("/v1/not-allowed")
+    @GetMapping("/v1/not-restricted")
     public String deniedToken() {
-        return "Token is not allowed";
+        return "Not Restricted API";
     }
 
 }
