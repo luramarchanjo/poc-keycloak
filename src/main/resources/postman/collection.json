@@ -87,7 +87,7 @@
       "response": []
     },
     {
-      "name": "Login | Without",
+      "name": "Login | Without Scope",
       "event": [
         {
           "listen": "test",
