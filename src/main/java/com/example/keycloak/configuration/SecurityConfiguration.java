@@ -22,6 +22,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests(authorizeRequests -> authorizeRequests
                 /**
+                 * A JWT that is issued from an OAuth 2.0 Authorization Server will typically either have a scope or
+                 * scp attribute, indicating the scopes (or authorities) it’s been granted, for example:
+                 *
+                 * { "scope" : "user:read" }
+                 *
                  * When this is the case, Resource Server will attempt to coerce these scopes into a list of granted
                  * authorities, prefixing each scope with the string "SCOPE_".
                  *
