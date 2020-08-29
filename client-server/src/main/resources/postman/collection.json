@@ -6,7 +6,144 @@
   },
   "item": [
     {
-      "name": "Login | With Scope",
+      "name": "Login | Client Credentials | With Scope",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "35443a19-3089-49e5-a5ef-ff5d63f80911",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Token is present\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.environment.set(\"keycloak-access-token\", jsonData.access_token);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "text"
+            },
+            {
+              "key": "client_id",
+              "value": "{{keycloak-client-id}}",
+              "type": "text"
+            },
+            {
+              "key": "client_secret",
+              "value": "{{keycloak-client-secret}}",
+              "type": "text"
+            },
+            {
+              "key": "scope",
+              "value": "user:read",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{keycloak-host}}/auth/realms/{{keycloak-realm}}/protocol/openid-connect/token",
+          "host": [
+            "{{keycloak-host}}"
+          ],
+          "path": [
+            "auth",
+            "realms",
+            "{{keycloak-realm}}",
+            "protocol",
+            "openid-connect",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login | Client Credentials | Without Scope",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "f9167260-8abd-455c-abd5-a1ddf2ded7ce",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Token is present\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.environment.set(\"keycloak-access-token\", jsonData.access_token);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "text"
+            },
+            {
+              "key": "client_id",
+              "value": "{{keycloak-client-id}}",
+              "type": "text"
+            },
+            {
+              "key": "client_secret",
+              "value": "{{keycloak-client-secret}}",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{keycloak-host}}/auth/realms/{{keycloak-realm}}/protocol/openid-connect/token",
+          "host": [
+            "{{keycloak-host}}"
+          ],
+          "path": [
+            "auth",
+            "realms",
+            "{{keycloak-realm}}",
+            "protocol",
+            "openid-connect",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login | Password | With Scope",
       "event": [
         {
           "listen": "test",
@@ -87,7 +224,7 @@
       "response": []
     },
     {
-      "name": "Login | Without Scope",
+      "name": "Login | Password | Without Scope",
       "event": [
         {
           "listen": "test",

@@ -29,7 +29,7 @@
     },
     {
       "key": "keycloak-client-secret",
-      "value": "5a0c4445-dd28-4cea-a278-75c4209cf1df",
+      "value": "653af962-ec99-4763-83d2-4c1223b8f037",
       "enabled": true
     },
     {
@@ -44,6 +44,6 @@
     }
   ],
   "_postman_variable_scope": "environment",
-  "_postman_exported_at": "2020-08-25T02:01:01.963Z",
-  "_postman_exported_using": "Postman/7.30.1"
+  "_postman_exported_at": "2020-08-29T16:15:31.764Z",
+  "_postman_exported_using": "Postman/7.31.1"
 }
