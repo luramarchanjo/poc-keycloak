@@ -13,15 +13,15 @@ Resource Server and Client.
 
 # Testing
 
-1º Start the **Keycloak** running the command above:
+1º Start the **Keycloak** running the command below:
 
 `docker start keycloak`
 
-2º Start the **Resource Server** running the command above:
+2º Start the **Resource Server** running the command below:
 
 `cd resource-server && mvn clean spring-boot:run`
 
-3º Start the **Client Server** running the command above:
+3º Start the **Client Server** running the command below:
 
 `cd client-server && mvn clean spring-boot:run`
 
