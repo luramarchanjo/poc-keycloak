@@ -9,6 +9,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class WebClientConfiguration {
 
+    /**
+     * The OAuth 2.0 Client support integrates with WebClient using an ExchangeFilterFunction.
+     * <p>
+     * Reference https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2Client-webclient-servlet
+     */
     @Bean
     public WebClient webClient(OAuth2AuthorizedClientManager authorizedClientManager) {
         ServletOAuth2AuthorizedClientExchangeFilterFunction oauth2Client =

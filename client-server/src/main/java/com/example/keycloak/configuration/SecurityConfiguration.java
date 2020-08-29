@@ -8,6 +8,12 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 @Configuration
 public class SecurityConfiguration {
 
+    /**
+     * The OAuth2AuthorizedClientManager is responsible for the overall management of OAuth2AuthorizedClient(s).
+     * <p>
+     * Reference https://docs.spring.io/spring-security/site/docs/current/reference/html5/#customizing-the-access-token-response-3
+     * Reference https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2Client-authorized-manager-provider
+     */
     @Bean
     public OAuth2AuthorizedClientManager authorizedClientManager(
             ClientRegistrationRepository clientRegistrationRepository,
@@ -15,8 +21,8 @@ public class SecurityConfiguration {
     ) {
 
         final OAuth2AuthorizedClientProvider authorizedClientProvider = OAuth2AuthorizedClientProviderBuilder.builder()
-                .clientCredentials()
-                .refreshToken()
+                .clientCredentials() // Configures support for the client_credentials grant type.
+                .refreshToken() // Configures support for the refresh_token.
                 .build();
 
         final AuthorizedClientServiceOAuth2AuthorizedClientManager authorizedClientManager
